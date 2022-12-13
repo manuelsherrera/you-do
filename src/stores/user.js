@@ -19,22 +19,18 @@ export default defineStore("user", {
     async signUp(email, password) {
       const { user, error } = await supabase.auth.signUp({
         email: email,
-
         password: password,
       });
 
       if (error) throw error;
-
       if (user) this.user = user;
     },
 
     persist: {
       enabled: true,
-
       strategies: [
         {
           key: "user",
-
           storage: localStorage,
         },
       ],
