@@ -8,21 +8,23 @@ export default defineStore("user", {
     };
   },
   actions: {
-    async signUp() {
+    async signUp(email, password) {
       const response = await supabase.auth.signUp({
-        email: 'nestor86+2@gmail.com',
-        password: 'example-password',
+        email: email,
+        password: password,
       })
       this.user = response.data.user
     },
-    async login() {
+    async login(email, password) {
       const { data, error } = await supabase.auth.signInWithPassword({
-        email: 'nestor86+2@gmail.com',
-        password: 'example-password',
+        email: email,
+        password: password,
       });
-
+      console.log("Antes: ", this.user)
       this.user = data.user;
-      console.log("user: ", this.user)
+      if(error){
+        alert(error.error_description)
+      }
     },
     async signOut() {
       const { error } = await supabase.auth.signOut()
