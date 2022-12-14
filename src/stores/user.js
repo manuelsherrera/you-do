@@ -24,10 +24,13 @@ export default defineStore("user", {
       this.user = data.user;
       if(error){
         alert(error.error_description)
+      } else {
+        this.$router.push({ path: '/dashboard' })
       }
     },
     async signOut() {
       const { error } = await supabase.auth.signOut()
+      this.user = null
     },
   },
   persist: {

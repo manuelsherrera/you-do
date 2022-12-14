@@ -1,6 +1,6 @@
 <template>
   <NAVBAR />
-  <h1 class="">This is a Title in app.vue</h1>
+  <!-- <h1 class="">This is a Title in app.vue</h1> -->
   <RouterView />
 
 </template>
