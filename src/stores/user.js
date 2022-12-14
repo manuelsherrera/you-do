@@ -8,7 +8,7 @@ export default defineStore("user", {
     };
   },
   actions: {
-    async signUp(email, password) {
+    async signUp(email, password) { 
       const response = await supabase.auth.signUp({
         email: email,
         password: password,
