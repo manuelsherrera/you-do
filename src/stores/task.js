@@ -4,7 +4,7 @@ import { supabase } from "../supabase";
 export default defineStore("tasks", {
   state() {
     return {
-      tasks: null,
+      tasks: [],
     };
   },
   actions: {
@@ -14,6 +14,14 @@ export default defineStore("tasks", {
         .select("*")
         .order("id", { ascending: false });
       this.tasks = tasks;
+      console.log(this.tasks)
+    },
+    async createTask(taskTitle, uuid) {
+      const { error } = await supabase.from("tasks").insert({ user_id: uuid, title: taskTitle });
+      if(error){
+        throw error
+      }
+      this.fetchTasks();
     },
   },
 });

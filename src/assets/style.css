@@ -5,5 +5,10 @@
 @layer base {
     :root {
       --vue-green: #39B983;
+      --darkBlue: #1D3557;
+      --midBlue: #457B9D;
+      --lightBlue: #A8DADC;
+      --lighterBlue: #F1FAEE;
+      --red: #F1FAEE;
     }
   }
