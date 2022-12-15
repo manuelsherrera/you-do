@@ -14,8 +14,8 @@
             task</button>
     </form>
 
-        <TaskCart />
-   
+    <TaskCart />
+
 
 </template>
 
