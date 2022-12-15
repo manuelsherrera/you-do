@@ -9,16 +9,13 @@
                 placeholder="e.g: Buy coffee" required>
         </div>
 
-        <button type="submit" value="Submit" class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Create task</button>
+        <button type="submit" value="Submit"
+            class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Create
+            task</button>
     </form>
 
-    <ul v-for="(task, index) of tasksStore.tasks">
-        <li>ID: {{ task.id }}</li>
-        <li>USER ID: {{ task.user_id }}</li>
-        <li>TITLE: {{ task.title }}</li>
-        <li>STATUS: {{ task.status }}</li>
-        <li>TIMESTAMP: {{ task.inserted_at }}</li>
-    </ul>
+        <TaskCart />
+   
 
 </template>
 
@@ -26,19 +23,30 @@
 import { mapStores } from 'pinia'
 import userStore from "../stores/user"
 import tasksStore from "../stores/task"
+import TaskCart from "../components/TaskCart.vue"
 
 export default {
-    data(){
-        return{
-        }
+    // data() {
+    //     return {
+    //         inputTitle: true
+    //     }
+    // },
+    components: {
+        TaskCart,
     },
     computed: {
         ...mapStores(userStore, tasksStore)
     },
-    methods: {
+    methods: {
         addNewTask(taskTitle) {
             this.tasksStore.createTask(taskTitle, this.userStore.user.id)
         },
+        // deleteSelectedTask(index) {
+        //     this.tasksStore.deleteTask(this.tasksStore.tasks[index].id)
+        // },
+        // updateSelectedTask(newTitle, index) {
+        //     this.tasksStore.updateTask(newTitle, this.tasksStore.tasks[index].id)
+        // },
     },
     mounted() {
         console.log("userStore: ", this.userStore.user)
