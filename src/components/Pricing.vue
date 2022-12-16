@@ -135,7 +135,6 @@ import CHECK from "../components/icons/check.vue"
 export default {
     components: {
         CHECK,
-
     }
 }
 </script>

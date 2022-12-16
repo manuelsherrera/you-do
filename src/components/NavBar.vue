@@ -38,27 +38,32 @@
           space-y-4
           md:flex md:space-y-0 md:flex-row md:items-center md:space-x-10 md:mt-0
         ">
-      <li class="text-black-100 hover:text-[color:var(--vue-green)]"><router-link to="/">{{ home }}</router-link></li>
-      <li v-if="!userStore.user" class="text-black-100 hover:text-[color:var(--vue-green)]"><router-link
-          to="register">{{ signUp }}</router-link></li>
-      <li v-if="!userStore.user" class="text-black-100 hover:text-[color:var(--vue-green)]"><router-link to="login">{{
-          logIn
-      }}</router-link></li>
-      <li v-if="userStore.user" class="text-black-100 hover:text-[color:var(--vue-green)]"><router-link
-          @click="userStore.signOut" to="login">{{ logOut }}</router-link></li>
+      <li class="text-black-100 hover:text-[color:var(--vue-green)]">
+        <router-link to="/">{{ home }}</router-link>
+      </li>
+
+      <!-- <li v-if="!userStore.user" class="text-black-100 hover:text-[color:var(--vue-green)]">
+        <router-link to="register">{{ signUp }}</router-link>
+      </li> -->
+
+      <li v-if="!userStore.user" class="text-black-100 hover:text-[color:var(--vue-green)]"><router-link to="login">{{ logIn }}</router-link>
+      </li>
+
+      <li v-if="userStore.user" class="text-black-100 hover:text-[color:var(--vue-green)]">
+        <router-link to="dashboard">{{ dashboard }}</router-link>
+      </li>
+
+      <li v-if="userStore.user" class="text-black-100 hover:text-[color:var(--vue-green)]">
+        <router-link @click="userStore.signOut" to="login">{{ logOut }}</router-link>
+      </li>
+
     </ul>
   </nav>
 </template>
 
 <script>
-// import { ref } from 'vue';
 import { mapStores } from 'pinia';
 import userStore from "../stores/user";
-
-// let showMenu = ref(false);
-// const toggleNav = () => (showMenu.value = !showMenu.value);
-
-//Nav buttons
 
 export default {
   data() {
@@ -68,6 +73,7 @@ export default {
       signUp: "SignUp",
       logIn: "Login",
       logOut: "Log Out",
+      dashboard: "Dashboard",
     }
   },
   computed: {

@@ -5,7 +5,7 @@
         <section class="mb-40 background-radial-gradient overflow-hidden">
             <div class="px-6 py-12 lg:py-24 md:px-12 text-center lg:text-left">
                 <div class="container mx-auto xl:px-32 text-gray-800">
-                    <div class="grid lg:grid-cols-2 gap-12 flex items-center">
+                    <div class="grid lg:grid-cols-2 gap-12 items-center">
                         <div class="mt-12 lg:mt-0" style="z-index: 10">
                             <h1 class="text-5xl md:text-6xl xl:text-7xl font-bold tracking-tight mb-12"
                                 style="color: hsl(218, 81%, 95%)">

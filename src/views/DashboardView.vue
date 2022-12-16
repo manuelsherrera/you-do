@@ -1,6 +1,6 @@
 <template>
     <!-- <h1>TITLE</h1> -->
-    <button @click="tasksStore.fetchTasks()">Fetch Tasks</button>
+    <!-- <button @click="tasksStore.fetchTasks()">Fetch Tasks</button> -->
     <form @submit.prevent="addNewTask(taskTitle)">
         <div class="">
             <label for="title" class="block mb-2 text-sm font-medium text-gray-900">Title</label>
@@ -14,8 +14,20 @@
             task</button>
     </form>
 
-    <TaskCart />
-
+    <div class="flex justify-center mt-6 px-4">
+        <div id="col1">
+            <div><h2 class="text-2xl mb-6 w-80 border-b-2">Backlog {{ this.tasksStore.backLog.length }}</h2></div>
+            <TaskCart class="mb-8 mx-3 border-2 rounded" v-for="(tasksElements, index) of tasksStore.backLog" :taskCard="tasksElements" :index="index" />
+        </div>
+        <div id="col2">
+            <div><h2 class="text-2xl w-80 mb-6 border-b-2">Doing {{ this.tasksStore.doing.length }}</h2></div>
+            <TaskCart class="mb-8 mx-3 border-2 rounded" v-for="(tasksElements, index) of tasksStore.doing" :taskCard="tasksElements" :index="index" />
+        </div>
+        <div id="col3">
+            <div><h2 class="text-2xl w-80 mb-6 border-b-2">Done  {{ this.tasksStore.done.length }}</h2></div>
+            <TaskCart class="mb-8 mx-3 border-2 rounded" v-for="(tasksElements, index) of tasksStore.done" :taskCard="tasksElements" :index="index" />
+        </div>
+    </div>
 
 </template>
 
@@ -26,33 +38,31 @@ import tasksStore from "../stores/task"
 import TaskCart from "../components/TaskCart.vue"
 
 export default {
-    // data() {
-    //     return {
-    //         inputTitle: true
-    //     }
-    // },
+    data() {
+        return {
+
+        }
+    },
+    props: ["TaskCard"],
     components: {
         TaskCart,
     },
     computed: {
-        ...mapStores(userStore, tasksStore)
+        ...mapStores(userStore, tasksStore),
+
     },
     methods: {
         addNewTask(taskTitle) {
             this.tasksStore.createTask(taskTitle, this.userStore.user.id)
         },
-        // deleteSelectedTask(index) {
-        //     this.tasksStore.deleteTask(this.tasksStore.tasks[index].id)
-        // },
-        // updateSelectedTask(newTitle, index) {
-        //     this.tasksStore.updateTask(newTitle, this.tasksStore.tasks[index].id)
-        // },
-    },
-    mounted() {
-        console.log("userStore: ", this.userStore.user)
-        console.log("userStoreId: ", this.userStore.user.id)
 
-        this.tasksStore.fetchTasks()
+    },
+    async mounted() {
+        await this.tasksStore.fetchTasks()
+        // console.log("Task Store TASKS: ", this.tasksStore.tasks)
+        console.log("Task Store Backlog: ", this.tasksStore.backLog.length)
+        // console.log("Task Store Doing: ", this.tasksStore.doing)
+        // console.log("Task Store Done: ", this.tasksStore.done)
     },
 }
 </script>
