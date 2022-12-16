@@ -71,7 +71,9 @@
   import { CheckIcon, ChevronUpDownIcon } from '@heroicons/vue/20/solid'
   
   const people = [
-    { name: 'Backlog' },
+    { name: 'Backlog',
+      value: 1,
+    },
     { name: 'Doing' },
     { name: 'Done' },
   ]

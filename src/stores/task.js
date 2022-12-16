@@ -7,6 +7,17 @@ export default defineStore("tasks", {
       tasks: [],
     };
   },
+  getters:{
+        backLog(){
+          return this.tasks.filter(item => item.status === 1) 
+        },
+        doing(){
+          return this.tasks.filter(item => item.status === 2) 
+        },
+        done(){
+          return this.tasks.filter(item => item.status === 3) 
+        },
+  },
   actions: {
     async fetchTasks() {
       const { data: tasks } = await supabase
@@ -41,5 +52,8 @@ export default defineStore("tasks", {
         .eq('id', id)
         .select()
     },
+  },
+  mounted(){
+    // this.fetchTasks();
   },
 });

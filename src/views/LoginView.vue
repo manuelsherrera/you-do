@@ -51,7 +51,9 @@ import tasksStore from "../stores/task"
 
 export default {
     computed: {
-        ...mapStores(userStore, tasksStore)
+        ...mapStores(userStore, tasksStore),
+
+        
     },
     mounted() {
         this.tasksStore.fetchTasks()
