@@ -13,7 +13,7 @@
             text-black-100
             md:text-2xl
             hover:text-green-400
-          "><img class="scale-[1]" src="../../public/images/logo.svg">
+          "><img class="w-12" src="../../public/images/youdo-logo.png">
       </router-link>
       <!-- Mobile menu button -->
       <div @click="toggleNav" class="flex md:hidden">
