@@ -15,17 +15,27 @@
     </form>
 
     <div class="flex justify-center mt-6 px-4">
+
         <div id="col1">
-            <div><h2 class="text-2xl mb-6 w-80 border-b-2">Backlog {{ this.tasksStore.backLog.length }}</h2></div>
-            <TaskCart class="mb-8 mx-3 border-2 rounded" v-for="(tasksElements, index) of tasksStore.backLog" :taskCard="tasksElements" :index="index" />
+            <div>
+                <h2 class="text-2xl mb-6 w-80 border-b-2">Backlog {{ this.tasksStore.backLog.length }}</h2>
+            </div>
+            <TaskCart class="mb-8 mx-3 border-2 rounded" v-for="(tasksElements, index) of tasksStore.backLog"
+                :taskCard="tasksElements" :index="index" />
         </div>
         <div id="col2">
-            <div><h2 class="text-2xl w-80 mb-6 border-b-2">Doing {{ this.tasksStore.doing.length }}</h2></div>
-            <TaskCart class="mb-8 mx-3 border-2 rounded" v-for="(tasksElements, index) of tasksStore.doing" :taskCard="tasksElements" :index="index" />
+            <div>
+                <h2 class="text-2xl w-80 mb-6 border-b-2">Doing {{ this.tasksStore.doing.length }}</h2>
+            </div>
+            <TaskCart class="mb-8 mx-3 border-2 rounded" v-for="(tasksElements, index) of tasksStore.doing"
+                :taskCard="tasksElements" :index="index" />
         </div>
         <div id="col3">
-            <div><h2 class="text-2xl w-80 mb-6 border-b-2">Done  {{ this.tasksStore.done.length }}</h2></div>
-            <TaskCart class="mb-8 mx-3 border-2 rounded" v-for="(tasksElements, index) of tasksStore.done" :taskCard="tasksElements" :index="index" />
+            <div>
+                <h2 class="text-2xl w-80 mb-6 border-b-2">Done {{ this.tasksStore.done.length }}</h2>
+            </div>
+            <TaskCart class="mb-8 mx-3 border-2 rounded" v-for="(tasksElements, index) of tasksStore.done"
+                :taskCard="tasksElements" :index="index" />
         </div>
     </div>
 
