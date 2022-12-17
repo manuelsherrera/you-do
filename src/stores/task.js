@@ -7,16 +7,16 @@ export default defineStore("tasks", {
       tasks: [],
     };
   },
-  getters:{
-        backLog(){
-          return this.tasks.filter(item => item.status === 1) 
-        },
-        doing(){
-          return this.tasks.filter(item => item.status === 2) 
-        },
-        done(){
-          return this.tasks.filter(item => item.status === 3) 
-        },
+  getters: {
+    backLog() {
+      return this.tasks.filter((item) => item.status === 1);
+    },
+    doing() {
+      return this.tasks.filter((item) => item.status === 2);
+    },
+    done() {
+      return this.tasks.filter((item) => item.status === 3);
+    },
   },
   actions: {
     async fetchTasks() {
@@ -25,35 +25,42 @@ export default defineStore("tasks", {
         .select("*")
         .order("id", { ascending: false });
       this.tasks = tasks;
-      console.log("Supabase data: ", this.tasks)
+      console.log("Supabase data: ", this.tasks);
     },
     async createTask(taskTitle, uuid) {
-      const { error } = await supabase.from("tasks").insert({ user_id: uuid, title: taskTitle });
+      const { error } = await supabase
+        .from("tasks")
+        .insert({ user_id: uuid, title: taskTitle });
       if (error) {
-        throw error
+        throw error;
       }
       this.fetchTasks();
     },
     async deleteTask(id) {
-      const { error } = await supabase
-        .from('tasks')
-        .delete()
-        .eq('id', id);
+      const { error } = await supabase.from("tasks").delete().eq("id", id);
 
       if (error) {
-        throw error
+        throw error;
       }
       this.fetchTasks();
     },
     async updateTask(newTitle, id) {
       const { data, error } = await supabase
-        .from('tasks')
+        .from("tasks")
         .update({ title: newTitle })
-        .eq('id', id)
-        .select()
+        .eq("id", id)
+        .select();
     },
+    //////
+    /* async updateStatus(newStatus, id) {
+      const { data, error } = await supabase
+        .from("tasks")
+        .update({ status: newStatus })
+        .eq("id", id)
+        .select();
+    }, */
   },
-  mounted(){
+  mounted() {
     // this.fetchTasks();
   },
 });
