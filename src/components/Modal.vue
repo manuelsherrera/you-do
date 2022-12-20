@@ -124,4 +124,10 @@ export default {
     }
 };
 </script>
+
+<style>
+#modal {
+    display: none;
+}
+</style>
   
