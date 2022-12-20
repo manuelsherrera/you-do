@@ -13,7 +13,7 @@
               <div class="flex justify-center">
                 <div class="flex justify-center" style="margin-top: -75px">
                   <img
-                    src="../../public/images/manuel.png"
+                    src="/images/manuel.png"
                     class="rounded-full mx-auto shadow-lg"
                     alt=""
                     style="width: 150px"
@@ -70,7 +70,7 @@
               <div class="flex justify-center">
                 <div class="flex justify-center" style="margin-top: -75px">
                   <img
-                    src="../../public/images/nestor.jpg"
+                    src="/images/nestor.jpg"
                     class="rounded-full mx-auto shadow-lg"
                     alt=""
                     style="width: 150px"
@@ -127,7 +127,7 @@
               <div class="flex justify-center">
                 <div class="flex justify-center" style="margin-top: -75px">
                   <img
-                    src="../../public/images/joey.jpg"
+                    src="/images/joey.jpg"
                     class="rounded-full mx-auto shadow-lg"
                     alt=""
                     style="width: 150px"
