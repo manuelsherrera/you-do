@@ -27,10 +27,14 @@ export default defineStore("tasks", {
       this.tasks = tasks;
       console.log("Supabase data: ", this.tasks);
     },
-    async createTask(taskTitle, uuid) {
+    async createTask(taskTitle, taskDescription, uuid) {
       const { error } = await supabase
         .from("tasks")
-        .insert({ user_id: uuid, title: taskTitle });
+        .insert(
+          { user_id: uuid, 
+            title: taskTitle,
+            textArea: taskDescription, 
+          });
       if (error) {
         throw error;
       }

@@ -1,10 +1,7 @@
 <template>
     <ul class="p-4" v-if="taskCard">
-        <!-- <li>ID: {{ taskCard.id }}</li> -->
-        <!-- <li>USER ID: {{ taskCard.user_id }}</li> -->
         <li v-if="inputEditing">Title: {{ taskCard.title }}</li>
         <input v-else v-model="taskCard.title" name="title" id="title">
-
         <div>
             <li v-if="inputEditing">
             Status: {{ statusValue() }}
@@ -16,11 +13,6 @@
                 </option>
             </select>
         </div>
-
-        <!-- <li>Deadline: {{ taskCard.inserted_at }}</li> -->
-        <!-- <li>Deadline: {{ this.tasksStore.formatDate() }}</li> -->
-
-        <!-- <li>Deadline: {{ toLocaleDateString(taskCard.deadline) }}</li> -->
         <li>Deadline: {{ new Date(taskCard.inserted_at).toLocaleDateString('en-US', {year: 'numeric', month: 'short', day: 'numeric'}) }}</li>
 
         <div class="flex gap-2">
@@ -40,7 +32,6 @@
         </div>
     </ul>
 </template>
-<!-- (selected || statusValue) -->
 <script>
 import { mapStores } from 'pinia'
 import userStore from "../stores/user"
@@ -94,9 +85,6 @@ export default {
         deleteSelectedTask(index) {
             this.tasksStore.deleteTask(this.taskCard.id)
         },
-        // updateSelectedTask(newTitle, status, index) {
-        //     this.tasksStore.updateTask(newTitle, status, this.taskCard.id)
-        // },
         statusValue() {
             if (this.taskCard.status == 1) {
                 return this.status = "Backlog"
@@ -107,10 +95,8 @@ export default {
             }
         },
         updateSelectedTask(taskCardTitle, status, statusId){
-            // this.updateSelectedTask(taskCard.title, selected, index)
             if(status === ""){
                 console.log("statusID: ", statusId)
-                // console.log(this.statusValue())
                 this.tasksStore.updateTask(taskCardTitle, statusId, this.taskCard.id)
             } else {
                 this.tasksStore.updateTask(taskCardTitle, status, this.taskCard.id)
@@ -122,9 +108,6 @@ export default {
     mounted() {
         // console.log("Data Status: ", this.status)
         this.deadLinesArr.push(this.taskCard)
-        // console.log("deadLinesArr: ", this.deadLinesArr)
-        // console.log("Date: ", this.tasksStore.tasks)
     },
 }
-
 </script>

@@ -18,7 +18,7 @@
             text-black-100
             md:text-2xl
             hover:text-green-400
-          "><img class="w-12" src="../../public/images/youdo-logo.png">
+          "><img class="w-12" src="/images/youdo-logo.png">
       </router-link>
       <!-- Mobile menu button -->
       <div @click="toggleNav" class="flex md:hidden">
@@ -46,37 +46,16 @@
       <li class="text-black-100 hover:text-[color:var(--midBlue)]">
         <router-link to="/">{{ home }}</router-link>
       </li>
-
-      <!-- <li v-if="!userStore.user" class="text-black-100 hover:text-[color:var(--midBlue)]">
-        <router-link to="register">{{ signUp }}</router-link>
-      </li> -->
-
       <li v-if="!userStore.user" class="text-black-100 hover:text-[color:var(--midBlue)]"><router-link to="login">{{
           logIn
       }}</router-link>
       </li>
-
-      <!-- <li v-if="!isLoggedIn" class="text-black-100 hover:text-[color:var(--midBlue)]">
-        <router-link to="dashboard">{{ dashboard }}</router-link>
-      </li> -->
-      <!-- <li v-else-if="isLoggedIn" class="text-black-100 hover:text-[color:var(--midBlue)]">
-        <router-link to="dashboard">{{ dashboard }}</router-link>
-      </li> -->
-
       <li v-if="userStore.user !== null" class="text-black-100 hover:text-[color:var(--midBlue)]">
         <router-link to="dashboard">{{ dashboard }}</router-link>
       </li>
-      <!-- <li v-else class="text-black-100 hover:text-[color:var(--midBlue)] hidden">
-        <router-link @click="userStore.signOut" to="login">I'M LOGOUT</router-link>
-      </li> -->
-
       <li v-if="userStore.user !== null" class="text-black-100 hover:text-[color:var(--midBlue)]">
         <router-link @click="userStore.signOut" to="login">{{ logOut }}</router-link>
       </li>
-      <!-- <li v-else class="text-black-100 hover:text-[color:var(--midBlue)] hidden">
-        <router-link @click="userStore.signOut" to="login">I'M LOGOUT</router-link>
-      </li> -->
-
     </ul>
   </nav>
 </template>
@@ -115,7 +94,7 @@ export default {
     },
   },
    async mounted() {
-    // console.log("isLoggedIn: ", await this.isLoggedIn);
+
     },
 }
 
