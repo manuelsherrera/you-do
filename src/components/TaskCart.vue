@@ -1,17 +1,27 @@
 <template>
-    <ul class="p-4">
+    <ul class="p-4" v-if="taskCard">
         <!-- <li>ID: {{ taskCard.id }}</li> -->
         <!-- <li>USER ID: {{ taskCard.user_id }}</li> -->
-        <li v-if="inputTitle">TITLE: {{ taskCard.title }}</li>
-        <div v-else>
-            <input v-model="taskCard.title">
-            <li><button @click="updateSelectedTask(taskCard.title, index); inputTitle = !inputTitle"
-                    class="w-30 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-3 py-1 my-2 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Save</button>
-            </li>
-        </div>
-        <li v-if="inputStatus">STATUS: {{ taskCard.status }}</li>
-        <li>TIMESTAMP: {{ taskCard.inserted_at }}</li>
+        <li v-if="inputEditing">Title: {{ taskCard.title }}</li>
+        <input v-else v-model="taskCard.title" name="title" id="title">
 
+        <div>
+            <li v-if="inputEditing">
+            Status: {{ statusValue() }}
+            </li>
+            <select v-else v-model="selected">
+                <option disabled :value="selected">Status: {{ statusValue() }}</option>
+                <option v-for="option in options" :value="option.value" :key="option.text">
+                    {{ option.text }}
+                </option>
+            </select>
+        </div>
+
+        <!-- <li>Deadline: {{ taskCard.inserted_at }}</li> -->
+        <!-- <li>Deadline: {{ this.tasksStore.formatDate() }}</li> -->
+
+        <!-- <li>Deadline: {{ toLocaleDateString(taskCard.deadline) }}</li> -->
+        <li>Deadline: {{ new Date(taskCard.inserted_at).toLocaleDateString('en-US', {year: 'numeric', month: 'short', day: 'numeric'}) }}</li>
 
         <div class="flex gap-2">
             <div>
@@ -19,17 +29,18 @@
                     class="w-30 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-3 py-1 my-2 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Delete</button>
             </div>
             <div>
-                <button @click="inputTitle = !inputTitle"
+                <button @click="inputEditing = !inputEditing"
                     class="w-30 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-3 py-1 my-2 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Edit</button>
             </div>
+            <div v-if="!inputEditing">
+                <li><button @click="updateSelectedTask(taskCard.title, selected, taskCard.status)"
+                        class="w-30 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-3 py-1 my-2 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Save</button>
+                </li>
+            </div>
         </div>
-        <!-- revisar en listbox -->
-        <!-- <ListBox @change="$emit(updateStatus(people.value, index))" /> -->
-        <ListBox />
     </ul>
-    <!-- buscar emit para pasar informacion  -->
 </template>
-
+<!-- (selected || statusValue) -->
 <script>
 import { mapStores } from 'pinia'
 import userStore from "../stores/user"
@@ -39,8 +50,25 @@ import ListBox from "../components/ListBox.vue"
 export default {
     data() {
         return {
-            inputTitle: true,
-            inputStatus: true,
+            inputEditing: true,
+            el: "...",
+            selected: "",
+            options: [
+                {
+                    text: 'Backlog',
+                    value: '1'
+                },
+                {
+                    text: 'Doing',
+                    value: '2'
+                },
+                {
+                    text: 'Done',
+                    value: '3'
+                }
+            ],
+            status: "",
+            deadLinesArr: [],
         }
     },
     components: {
@@ -55,17 +83,47 @@ export default {
         },
     },
     computed: {
-        ...mapStores(userStore, tasksStore)
+        ...mapStores(userStore, tasksStore),
+    },
+    watch: {
+        selected(value) {
+            this.updateSelectedTask(this.taskCard.title, value, null)
+        },
     },
     methods: {
         deleteSelectedTask(index) {
-            this.tasksStore.deleteTask(this.tasksStore.tasks[index].id)
+            this.tasksStore.deleteTask(this.taskCard.id)
         },
-        updateSelectedTask(newTitle, index) {
-            this.tasksStore.updateTask(newTitle, this.tasksStore.tasks[index].id)
+        // updateSelectedTask(newTitle, status, index) {
+        //     this.tasksStore.updateTask(newTitle, status, this.taskCard.id)
+        // },
+        statusValue() {
+            if (this.taskCard.status == 1) {
+                return this.status = "Backlog"
+            } else if (this.taskCard.status == 2) {
+                return this.status = "Doing"
+            } else if (this.taskCard.status == 3) {
+                return this.status = "Done"
+            }
+        },
+        updateSelectedTask(taskCardTitle, status, statusId){
+            // this.updateSelectedTask(taskCard.title, selected, index)
+            if(status === ""){
+                console.log("statusID: ", statusId)
+                // console.log(this.statusValue())
+                this.tasksStore.updateTask(taskCardTitle, statusId, this.taskCard.id)
+            } else {
+                this.tasksStore.updateTask(taskCardTitle, status, this.taskCard.id)
+            }
+            this.inputEditing = true
+            console.log("status: ", status)
         },
     },
     mounted() {
+        // console.log("Data Status: ", this.status)
+        this.deadLinesArr.push(this.taskCard)
+        // console.log("deadLinesArr: ", this.deadLinesArr)
+        // console.log("Date: ", this.tasksStore.tasks)
     },
 }
 

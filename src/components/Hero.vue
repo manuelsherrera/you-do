@@ -3,6 +3,12 @@
     <div>
         <!-- Section: Design Block -->
         <section class="mb-40 background-radial-gradient overflow-hidden">
+            <div v-if="this.userStore.verificationEmail" class="flex justify-end mt-2 mr-2">
+                <div class="item-end w-1/4 p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800"
+                    role="alert">
+                    <span class="font-bold">We have sent you a confirmation email!</span> Please, confirm your email!.
+                </div>
+            </div>
             <div class="px-6 py-12 lg:py-24 md:px-12 text-center lg:text-left">
                 <div class="container mx-auto xl:px-32 text-gray-800">
                     <div class="grid lg:grid-cols-2 gap-12 items-center">
@@ -24,13 +30,15 @@
                             <div id="radius-shape-1" class="absolute rounded-full shadow-lg blob_blur"></div>
                             <div id="radius-shape-2" class="absolute shadow-lg blob_blur"></div>
                             <div class="block rounded-lg shadow-lg bg-glass px-6 py-12 md:px-12">
-                                <form @submit.prevent="userStore.signUp(email, password)">
+                                <form @submit.prevent="userStore.signUp(firstName, email, password, confirmPassword)">
                                     <div class="grid md:grid-cols-2 md:gap-6">
+
                                         <div class="mb-6">
-                                            <input type="text"
+                                            <input v-model="firstName" type="text"
                                                 class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                                 placeholder="First name" />
                                         </div>
+
                                         <div class="mb-6">
                                             <input type="text"
                                                 class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
@@ -40,9 +48,15 @@
                                     <input v-model="email" type="email" name="email" id="email"
                                         class="form-control block w-full px-3 py-1.5 mb-6 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                         placeholder="Email address" required />
+
                                     <input v-model="password" type="password" name="password" id="password"
                                         class="form-control block w-full px-3 py-1.5 mb-6 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                                        placeholder="••••••••" />
+                                        placeholder="Password" required/>
+
+                                    <input v-model="confirmPassword" type="password" name="confirmPassword" id="confirmPassword"
+                                        class="form-control block w-full px-3 py-1.5 mb-6 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                        placeholder="Confirm password" required/>
+
                                     <div class="form-check flex justify-center mb-6">
                                         <input
                                             class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
@@ -52,6 +66,7 @@
                                             Subscribe to our newsletter
                                         </label>
                                     </div>
+
                                     <button type="submit" value="Submit" data-mdb-ripple="true"
                                         data-mdb-ripple-color="light"
                                         class="inline-block px-6 py-2.5 mb-6 w-full bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">
@@ -129,6 +144,7 @@ export default {
         return {
             email: "",
             password: "",
+            confirmPassword: "",
         }
     },
     computed: {

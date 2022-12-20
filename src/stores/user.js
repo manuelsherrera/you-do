@@ -5,24 +5,38 @@ export default defineStore("user", {
   state() {
     return {
       user: null,
+      verificationEmail: false,
     };
   },
   actions: {
-    async signUp(email, password) { 
-      const response = await supabase.auth.signUp({
-        email: email,
-        password: password,
-      })
-      this.user = response.data.user
+    async signUp(firstName, email, password, confirmPassword) {
+      if (password === confirmPassword) {
+        this.verificationEmail = true;
+        setTimeout(() => {
+          this.verificationEmail = false;
+        }, 5000);
+        const response = await supabase.auth.signUp({
+          email: email,
+          password: password,
+          options: {
+            data: {
+              firstName: firstName,
+            },
+          },
+        })
+        // this.user = response.data.user
+      } else {
+        console.log("Password status: Doesn't match")
+      }
     },
     async login(email, password) {
       const { data, error } = await supabase.auth.signInWithPassword({
         email: email,
         password: password,
       });
-      console.log("Antes: ", this.user)
       this.user = data.user;
-      if(error){
+      if (error) {
+        console.log("error: ", error)
         alert(error.error_description)
       } else {
         this.$router.push({ path: '/dashboard' })
@@ -44,40 +58,3 @@ export default defineStore("user", {
   },
 })
 
-// import { defineStore } from "pinia";
-// import { supabase } from "../supabase";
-
-// export default defineStore("user", {
-//   state() {
-//     return {
-//       user: null,
-//     };
-//   },
-
-//   actions: {
-//     async fetchUser() {
-//       const user = await supabase.auth.user();
-//       this.user = user;
-//     },
-
-//     async signUp(email, password) {
-//       const { user, error } = await supabase.auth.signUp({
-//         email: email,
-//         password: password,
-//       });
-
-//       if (error) throw error;
-//       if (user) this.user = user;
-//     },
-
-//     persist: {
-//       enabled: true,
-//       strategies: [
-//         {
-//           key: "user",
-//           storage: localStorage,
-//         },
-//       ],
-//     },
-//   },
-// });

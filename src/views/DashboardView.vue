@@ -1,7 +1,7 @@
 <template>
     <!-- <h1>TITLE</h1> -->
     <!-- <button @click="tasksStore.fetchTasks()">Fetch Tasks</button> -->
-    <form @submit.prevent="addNewTask(taskTitle)">
+    <form @submit.prevent="addNewTask(taskTitle)" class="w-1/2">
         <div class="">
             <label for="title" class="block mb-2 text-sm font-medium text-gray-900">Title</label>
             <input v-model="taskTitle" type="taskTitle" name="taskTitle" id="taskTitle"
@@ -10,7 +10,7 @@
         </div>
 
         <button type="submit" value="Submit"
-            class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Create
+            class="mt-2 w-1/4 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Create
             task</button>
     </form>
 
@@ -20,9 +20,10 @@
             <div>
                 <h2 class="text-2xl mb-6 w-80 border-b-2">Backlog {{ this.tasksStore.backLog.length }}</h2>
             </div>
-            <TaskCart class="mb-8 mx-3 border-2 rounded" v-for="(tasksElements, index) of tasksStore.backLog"
-                :taskCard="tasksElements" :index="index" />
+                <TaskCart class="list-group-item mb-8 mx-3 border-2 rounded"
+                    v-for="(tasksElements, index) of tasksStore.backLog" :taskCard="tasksElements" :index="index" />
         </div>
+
         <div id="col2">
             <div>
                 <h2 class="text-2xl w-80 mb-6 border-b-2">Doing {{ this.tasksStore.doing.length }}</h2>
@@ -38,7 +39,6 @@
                 :taskCard="tasksElements" :index="index" />
         </div>
     </div>
-
 </template>
 
 <script>
@@ -46,6 +46,7 @@ import { mapStores } from 'pinia'
 import userStore from "../stores/user"
 import tasksStore from "../stores/task"
 import TaskCart from "../components/TaskCart.vue"
+import draggable from "vuedraggable"
 
 export default {
     data() {
@@ -59,20 +60,24 @@ export default {
     },
     computed: {
         ...mapStores(userStore, tasksStore),
+        fetchConsole() {
+            return
+        },
 
     },
     methods: {
         addNewTask(taskTitle) {
             this.tasksStore.createTask(taskTitle, this.userStore.user.id)
+            this.taskTitle = ""
         },
-
     },
     async mounted() {
         await this.tasksStore.fetchTasks()
         // console.log("Task Store TASKS: ", this.tasksStore.tasks)
-        console.log("Task Store Backlog: ", this.tasksStore.backLog.length)
+        // console.log("Task Store Backlog: ", this.tasksStore.backLog.length)
         // console.log("Task Store Doing: ", this.tasksStore.doing)
         // console.log("Task Store Done: ", this.tasksStore.done)
+        // console.log("tasksStoreNew: ", await this.tasksStore.formatDate())
     },
 }
 </script>
