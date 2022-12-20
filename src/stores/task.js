@@ -58,13 +58,14 @@ export default defineStore("tasks", {
       }
       this.fetchTasks();
     },
-    /* async updateStatus(newStatus, id) {
+
+    async updateDragStatus(newStatus, id) {
       const { data, error } = await supabase
         .from("tasks")
         .update({ status: newStatus })
         .eq("id", id)
         .select();
-    }, */
-
-  }
+      this.fetchTasks();
+    },
+  },
 });

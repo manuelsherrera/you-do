@@ -7,7 +7,7 @@
 
         <div>
             <li v-if="inputEditing">
-            Status: {{ statusValue() }}
+                Status: {{ statusValue() }}
             </li>
             <select v-else v-model="selected">
                 <option disabled :value="selected">Status: {{ statusValue() }}</option>
@@ -21,7 +21,11 @@
         <!-- <li>Deadline: {{ this.tasksStore.formatDate() }}</li> -->
 
         <!-- <li>Deadline: {{ toLocaleDateString(taskCard.deadline) }}</li> -->
-        <li>Deadline: {{ new Date(taskCard.inserted_at).toLocaleDateString('en-US', {year: 'numeric', month: 'short', day: 'numeric'}) }}</li>
+        <li>Deadline: {{ new Date(taskCard.inserted_at).toLocaleDateString('en-US', {
+                year: 'numeric', month: 'short',
+                day: 'numeric'
+            })
+        }}</li>
 
         <div class="flex gap-2">
             <div>
@@ -106,9 +110,9 @@ export default {
                 return this.status = "Done"
             }
         },
-        updateSelectedTask(taskCardTitle, status, statusId){
+        updateSelectedTask(taskCardTitle, status, statusId) {
             // this.updateSelectedTask(taskCard.title, selected, index)
-            if(status === ""){
+            if (status === "") {
                 console.log("statusID: ", statusId)
                 // console.log(this.statusValue())
                 this.tasksStore.updateTask(taskCardTitle, statusId, this.taskCard.id)
