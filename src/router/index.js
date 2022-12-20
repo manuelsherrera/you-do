@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
+import { supabase } from "../supabase";
 // import Login2View from "../views/Login2View.vue";
 // import SignInView from "../views/SignInView.vue";
 import LoginView from "../views/LoginView.vue";
@@ -12,11 +13,6 @@ const router = createRouter({
       component: () => import("../views/HomeView.vue"),
     },
     {
-      path: "/register",
-      name: "register",
-      component: () => import("../views/RegisterView.vue"),
-    },
-    {
       path: "/login",
       name: "login",
       component: () => import("../views/LoginView.vue"),
@@ -28,5 +24,40 @@ const router = createRouter({
     },
   ],
 });
+
+router.beforeEach(async (to) => {
+  console.log("to: ", to);
+  const userAuth = await supabase.auth.getUser();
+  console.log("getUser: ", userAuth);
+  const isLoggedIn = userAuth.data.user !== null;
+  
+  if (!isLoggedIn && to.name === "dashboard") {
+    return "/";
+  }
+
+  // if (isLoggedIn && to.name === "home") {
+  //   return "/dashboard";
+  // }
+
+  // if (!isLoggedIn && to.name !== "home") {
+  //   return "/";
+  // }
+
+});
+
+// router.beforeEach(async function (param){
+//   console.log("param: ", param);
+//   const response = await supabase.auth.getUser();
+//   const isLoggedIn = response.data.user !== null;
+
+//   if (isLoggedIn && param.name === "auth") {
+//     return "/dashboard";
+//   }
+
+//   if (!isLoggedIn && param.name !== "auth") {
+//     return "/";
+//   }
+
+// });
 
 export default router;

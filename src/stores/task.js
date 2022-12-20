@@ -44,14 +44,20 @@ export default defineStore("tasks", {
       }
       this.fetchTasks();
     },
-    async updateTask(newTitle, id) {
+    async updateTask(newTitle, status, id) {
       const { data, error } = await supabase
         .from("tasks")
-        .update({ title: newTitle })
+        .update({
+          title: newTitle,
+          status: status,
+        })
         .eq("id", id)
         .select();
+      if (error) {
+        throw error;
+      }
+      this.fetchTasks();
     },
-    //////
     /* async updateStatus(newStatus, id) {
       const { data, error } = await supabase
         .from("tasks")
@@ -59,8 +65,6 @@ export default defineStore("tasks", {
         .eq("id", id)
         .select();
     }, */
-  },
-  mounted() {
-    // this.fetchTasks();
-  },
+
+  }
 });

@@ -1,5 +1,10 @@
 <template>
   <nav class="
+        z-30
+        h-auto
+        w-screen
+        bg-white
+
         container
         px-6
         py-8
@@ -38,24 +43,39 @@
           space-y-4
           md:flex md:space-y-0 md:flex-row md:items-center md:space-x-10 md:mt-0
         ">
-      <li class="text-black-100 hover:text-[color:var(--vue-green)]">
+      <li class="text-black-100 hover:text-[color:var(--midBlue)]">
         <router-link to="/">{{ home }}</router-link>
       </li>
 
-      <!-- <li v-if="!userStore.user" class="text-black-100 hover:text-[color:var(--vue-green)]">
+      <!-- <li v-if="!userStore.user" class="text-black-100 hover:text-[color:var(--midBlue)]">
         <router-link to="register">{{ signUp }}</router-link>
       </li> -->
 
-      <li v-if="!userStore.user" class="text-black-100 hover:text-[color:var(--vue-green)]"><router-link to="login">{{ logIn }}</router-link>
+      <li v-if="!userStore.user" class="text-black-100 hover:text-[color:var(--midBlue)]"><router-link to="login">{{
+          logIn
+      }}</router-link>
       </li>
 
-      <li v-if="userStore.user" class="text-black-100 hover:text-[color:var(--vue-green)]">
+      <!-- <li v-if="!isLoggedIn" class="text-black-100 hover:text-[color:var(--midBlue)]">
+        <router-link to="dashboard">{{ dashboard }}</router-link>
+      </li> -->
+      <!-- <li v-else-if="isLoggedIn" class="text-black-100 hover:text-[color:var(--midBlue)]">
+        <router-link to="dashboard">{{ dashboard }}</router-link>
+      </li> -->
+
+      <li v-if="userStore.user !== null" class="text-black-100 hover:text-[color:var(--midBlue)]">
         <router-link to="dashboard">{{ dashboard }}</router-link>
       </li>
+      <!-- <li v-else class="text-black-100 hover:text-[color:var(--midBlue)] hidden">
+        <router-link @click="userStore.signOut" to="login">I'M LOGOUT</router-link>
+      </li> -->
 
-      <li v-if="userStore.user" class="text-black-100 hover:text-[color:var(--vue-green)]">
+      <li v-if="userStore.user !== null" class="text-black-100 hover:text-[color:var(--midBlue)]">
         <router-link @click="userStore.signOut" to="login">{{ logOut }}</router-link>
       </li>
+      <!-- <li v-else class="text-black-100 hover:text-[color:var(--midBlue)] hidden">
+        <router-link @click="userStore.signOut" to="login">I'M LOGOUT</router-link>
+      </li> -->
 
     </ul>
   </nav>
@@ -63,6 +83,7 @@
 
 <script>
 import { mapStores } from 'pinia';
+import { supabase } from "../supabase";
 import userStore from "../stores/user";
 
 export default {
@@ -74,16 +95,29 @@ export default {
       logIn: "Login",
       logOut: "Log Out",
       dashboard: "Dashboard",
+      isLoggedIn: false,
     }
   },
   computed: {
-    ...mapStores(userStore)
+    ...mapStores(userStore),
+    async isLoggedIn2() {
+      const userAuth = await supabase.auth.getUser();
+      console.log("getUser: ", userAuth);
+      const isUserLoggedIn = userAuth.data.user !== null;
+      // const isUserLoggedIn = isLoggedIn;
+      console.log("isLoggedIn: ", isUserLoggedIn);
+      return isUserLoggedIn
+    },
   },
   methods: {
     toggleNav() {
       (this.showMenu = !this.showMenu)
     },
   },
+   async mounted() {
+    // console.log("isLoggedIn: ", await this.isLoggedIn);
+    },
 }
 
 </script>
+
