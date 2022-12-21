@@ -45,17 +45,16 @@ export default {
 
         }
     },
-    props: ["TaskCard"],
+    // props: ["TaskCard"],
     components: {
         TaskCart,
-        CreateTask
+        CreateTask,
     },
     computed: {
         ...mapStores(userStore, tasksStore),
         fetchConsole() {
             return
         },
-
     },
     methods: {
         addNewTask(taskTitle) {

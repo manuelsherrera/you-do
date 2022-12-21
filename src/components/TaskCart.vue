@@ -29,6 +29,7 @@
                         class="w-30 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-3 py-1 my-2 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Save</button>
                 </li>
             </div>
+            <div><ModalEdit :taskCardModalEdit="taskCard" :indexModalEdit="index"/></div>
         </div>
     </ul>
 </template>
@@ -36,7 +37,7 @@
 import { mapStores } from 'pinia'
 import userStore from "../stores/user"
 import tasksStore from "../stores/task"
-import ListBox from "../components/ListBox.vue"
+import ModalEdit from "../components/ModalEdit.vue"
 
 export default {
     data() {
@@ -63,7 +64,7 @@ export default {
         }
     },
     components: {
-        ListBox,
+        ModalEdit,
     },
     props: {
         taskCard: {
