@@ -14,14 +14,14 @@
                     class="w-full">
                     <!-- TASK TITLE -->
                     <div class="mb-4">
-                        <label for="title" class="block mb-2 text-lg font-medium text-gray-900 ">Title</label>
+                        <label for="title" class="block mb-2 text-lg font-medium text-gray-900 ">Task Title</label>
                         <input v-model="title" type="taskTitle" name="taskTitle" id="taskTitle2"
-                            class="bg-gray-50 border-2 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            class="bg-gray-50 border-2 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 background-radial-gradient dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="e.g: Buy coffee" required>
                     </div>
                     <!-- TASK STATUS -->
                     <div>
-                        <select v-model="selected" class="bg-gray-50 border-2 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <select v-model="selected" class="bg-gray-50 border-2 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 background-radial-gradient dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-4">
                             <option disabled :value="selected">Status: {{ statusValue() }}</option>
                             <option v-for="option in options" :value="option.value" :key="option.text">
                                 {{ option.text }}
@@ -33,12 +33,12 @@
                         Description</label>
                     <div class="relative mb-5 mt-2">
                         <textarea v-model="textArea" ref="myTextarea" :rows="rows" :cols="cols"
-                            class="border-2 bg-gray-50 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
+                            class="border-2 bg-gray-50 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 background-radial-gradient dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
                     </div>
 
                     <div class="flex items-center justify-start w-full">
                         <button type="submit" value="Submit"
-                            class="mt-2 w-1/4 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-2 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Save
+                            class="w-1/4 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-2 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Save
                             task</button>
                         <button type="button"
                             class="focus:outline-none ml-3 bg-gray-100 transition duration-150 text-gray-600 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded px-8 py-2 text-sm"
@@ -54,7 +54,7 @@
     <div class="w-[45%] m-auto flex justify-center">
         <div id="button">
             <button
-                class="focus:outline-none mx-auto transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white w-16 py-2 text-xs sm:text-sm"
+                class="inline-block px-6 py-2.5 w-full bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
                 @click="modalHandler(true)">
                 Edit
             </button>
@@ -194,5 +194,22 @@ export default {
 #modalEdit {
     display: none;
 }
+
+.background-radial-gradient {
+    background-color: hsl(218, 41%, 15%);
+    background-image: radial-gradient(650px circle at 0% 0%,
+            hsl(218, 41%, 35%) 15%,
+            hsl(218, 41%, 30%) 35%,
+            hsl(218, 41%, 20%) 75%,
+            hsl(218, 41%, 19%) 80%,
+            transparent 100%),
+        radial-gradient(1250px circle at 100% 100%,
+            hsl(218, 41%, 45%) 15%,
+            hsl(218, 41%, 30%) 35%,
+            hsl(218, 41%, 20%) 75%,
+            hsl(218, 41%, 19%) 80%,
+            transparent 100%);
+}
+
 </style>
   
