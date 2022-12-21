@@ -10,3 +10,16 @@ body {
 #app {
     width: 70%;
 }
+
+
+@media (min-width: 320px) { 
+    #app {
+        width: 90%;
+    }
+ }
+
+ @media (min-width: 768px) { 
+    #app {
+        width: 90%;
+    }
+ }

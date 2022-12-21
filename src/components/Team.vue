@@ -24,7 +24,7 @@
                 <h5 class="text-lg font-bold mb-4">Manuel Silva</h5>
                 <p class="mb-6">Frontend Developer</p>
                 <ul class="list-inside flex mx-auto justify-center">
-                  <a href="#!" class="px-2">
+                  <a href="https://github.com/manuelsherrera" class="px-2">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 496 512"
@@ -36,7 +36,7 @@
                       />
                     </svg>
                   </a>
-                  <a href="#!" class="px-2">
+                  <a href="https://twitter.com/manuelsherrera" class="px-2">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 512 512"
@@ -48,7 +48,7 @@
                       />
                     </svg>
                   </a>
-                  <a href="#!" class="px-2">
+                  <a href="https://www.linkedin.com/in/manuel-silva-4021289a/" class="px-2">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 448 512"
