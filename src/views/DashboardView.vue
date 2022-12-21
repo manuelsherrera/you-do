@@ -1,30 +1,33 @@
 <template>
-    <CreateTask />
+    <!-- <CardGlass /> -->
+<CreateTask />
 
-    <div class="flex justify-center mt-6 px-4">
+    <div class="bg-teal-500 flex justify-center mt-6 px-4 gap-x-4 overflow-x-scroll">
 
-        <div id="col1" @dragover.prevent @drop="onDrop($event, 1)">
+        <div id="col1" @dragover.prevent @drop="onDrop($event, 1)" class="w-[33%] min-w-min">
             <div>
-                <h2 class="text-2xl mb-6 w-80 border-b-2">Backlog {{ this.tasksStore.backLog.length }}</h2>
+                <h2 class="mt-2 flex bg-green text-2xl mb-6 w-full border-b-2 pb-2">Backlog <div class="bg-red w-6 h-6 rounded-md text-center text-white ml-2 text-[1rem] leading-6">{{ this.tasksStore.backLog.length }}</div></h2>
             </div>
-            <TaskCart class="list-group-item mb-8 mx-3 border-2 rounded"
+
+            <TaskCart class="list-group-item mb-8 border-2 w-full bg-white p-5 rounded-xl bg-opacity-60 backdrop-filter"
                 v-for="(tasksElements, index) of tasksStore.backLog" :taskCard="tasksElements" :index="index"
                 draggable="true" @dragstart="startDrag($event, tasksElements)" @dragover.prevent />
+
         </div>
 
-        <div id="col2" @dragover.prevent @drop="onDrop($event, 2)">
+        <div id="col2" @dragover.prevent @drop="onDrop($event, 2)" class="w-[33%] min-w-min">
             <div>
-                <h2 class="text-2xl w-80 mb-6 border-b-2">Doing {{ this.tasksStore.doing.length }}</h2>
+                <h2 class="mt-2 flex bg-green text-2xl mb-6 w-full border-b-2 pb-2">Doing <div class="bg-red w-6 h-6 rounded-md text-center text-white ml-2 text-[1rem] leading-6">{{ this.tasksStore.doing.length }}</div></h2>
             </div>
-            <TaskCart class="mb-8 mx-3 border-2 rounded" v-for="(tasksElements, index) of tasksStore.doing"
+            <TaskCart class="list-group-item mb-8 border-2 w-full bg-white p-5 rounded-xl bg-opacity-60 backdrop-filter" v-for="(tasksElements, index) of tasksStore.doing"
                 :taskCard="tasksElements" :index="index" draggable="true" @dragstart="startDrag($event, tasksElements)"
                 @dragover.prevent />
         </div>
-        <div id="col3" @dragover.prevent @drop="onDrop($event, 3)">
+        <div id="col3" @dragover.prevent @drop="onDrop($event, 3)" class="w-[33%] min-w-min">
             <div>
-                <h2 class="text-2xl w-80 mb-6 border-b-2">Done {{ this.tasksStore.done.length }}</h2>
+                <h2 class="mt-2 flex bg-green text-2xl mb-6 w-full border-b-2 pb-2">Done <div class="bg-red w-6 h-6 rounded-md text-center text-white ml-2 text-[1rem] leading-6">{{ this.tasksStore.done.length }}</div></h2>
             </div>
-            <TaskCart class="mb-8 mx-3 border-2 rounded" v-for="(tasksElements, index) of tasksStore.done"
+            <TaskCart class="list-group-item mb-8 border-2 w-full bg-white p-5 rounded-xl bg-opacity-60 backdrop-filter" v-for="(tasksElements, index) of tasksStore.done"
                 :taskCard="tasksElements" :index="index" draggable="true" @dragstart="startDrag($event, tasksElements)"
                 @dragover.prevent />
         </div>
@@ -37,6 +40,7 @@ import userStore from "../stores/user"
 import tasksStore from "../stores/task"
 import TaskCart from "../components/TaskCart.vue"
 import CreateTask from "../components/CreateTask.vue"
+import CardGlass from "../components/CardGlass.vue"
 import draggable from "vuedraggable"
 
 export default {
@@ -49,6 +53,7 @@ export default {
     components: {
         TaskCart,
         CreateTask,
+        CardGlass,
     },
     computed: {
         ...mapStores(userStore, tasksStore),

@@ -48,12 +48,13 @@ export default defineStore("tasks", {
       }
       this.fetchTasks();
     },
-    async updateTask(newTitle, status, id) {
+    async updateTask(newTitle, status, id, textArea) {
       const { data, error } = await supabase
         .from("tasks")
         .update({
           title: newTitle,
           status: status,
+          textArea: textArea,
         })
         .eq("id", id)
         .select();

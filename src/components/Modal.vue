@@ -41,10 +41,10 @@
         </div>
     </div>
 
-    <div class="w-[45%] m-auto flex justify-center">
+    <div class="w-full m-auto flex justify-end">
         <div id="button">
             <button
-                class="focus:outline-none mx-auto transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-4 sm:px-4 py-2 text-xs sm:text-sm"
+                class="focus:outline-none mx-auto transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-4 sm:px-4 py-2 mr-6 text-xs sm:text-sm"
                 @click="modalHandler(true)">
                 + Create Task
             </button>
@@ -60,12 +60,14 @@ import TextFileIcon from "../components/icons/TextFile.vue"
 //   import DROPDOWN from "/src/components/DropDown";
 
 export default {
-    name: "LeftAlignedForm",
+    // name: "LeftAlignedForm",
     data() {
         return {
             showModal: false,
             rows: 5,
-            cols: 50
+            cols: 50,
+            taskTitle: "",
+            taskDescription: "",
         };
     },
     components: {
@@ -82,6 +84,7 @@ export default {
         addNewTask(taskTitle, taskDescription) {
             this.tasksStore.createTask(taskTitle, taskDescription, this.userStore.user.id)
             this.taskTitle = ""
+            this.taskDescription = ""
         },
         modalHandler(val) {
             let modal = document.getElementById("modal");

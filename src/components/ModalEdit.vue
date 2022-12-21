@@ -10,15 +10,24 @@
                     <img class="w-12" src="https://img.icons8.com/wired/512/task--v3.png" />
                 </div>
 
-                <form @submit.prevent="addNewTask(taskTitle, taskDescription)" class="w-full">
+                <form @submit.prevent="updateSelectedTaskModalEdit(title, selected, taskCardModalEdit.status, textArea)"
+                    class="w-full">
                     <!-- TASK TITLE -->
                     <div class="mb-4">
-                        <label for="title" class="block mb-2 text-lg font-medium text-gray-900 ">{{TaskCardModalEdit}}</label>
+                        <label for="title" class="block mb-2 text-lg font-medium text-gray-900 ">Title</label>
                         <input v-model="title" type="taskTitle" name="taskTitle" id="taskTitle2"
                             class="bg-gray-50 border-2 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="e.g: Buy coffee" required>
                     </div>
-                    <h2 class="text-lg">MODAL EDIT HOLA</h2>
+                    <!-- TASK STATUS -->
+                    <div>
+                        <select v-model="selected" class="bg-gray-50 border-2 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <option disabled :value="selected">Status: {{ statusValue() }}</option>
+                            <option v-for="option in options" :value="option.value" :key="option.text">
+                                {{ option.text }}
+                            </option>
+                        </select>
+                    </div>
                     <!-- TASK DESCRIPTION -->
                     <label for="expiry" class="text-gray-800 text-lg font-bold leading-tight tracking-normal">Task
                         Description</label>
@@ -28,8 +37,8 @@
                     </div>
 
                     <div class="flex items-center justify-start w-full">
-                        <button @click="modalHandler()" type="submit" value="Submit"
-                            class="mt-2 w-1/4 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-2 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Create
+                        <button type="submit" value="Submit"
+                            class="mt-2 w-1/4 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-2 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Save
                             task</button>
                         <button type="button"
                             class="focus:outline-none ml-3 bg-gray-100 transition duration-150 text-gray-600 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded px-8 py-2 text-sm"
@@ -47,7 +56,7 @@
             <button
                 class="focus:outline-none mx-auto transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white w-16 py-2 text-xs sm:text-sm"
                 @click="modalHandler(true)">
-                + Edit
+                Edit
             </button>
         </div>
     </div>
@@ -61,7 +70,7 @@ import TextFileIcon from "../components/icons/TextFile.vue"
 //   import DROPDOWN from "/src/components/DropDown";
 
 export default {
-    name: "LeftAlignedForm",
+    // name: "LeftAlignedForm",
     data() {
         return {
             showModal: false,
@@ -69,6 +78,21 @@ export default {
             cols: 50,
             title: "",
             textArea: "",
+            selected: "",
+            options: [
+                {
+                    text: 'Backlog',
+                    value: '1'
+                },
+                {
+                    text: 'Doing',
+                    value: '2'
+                },
+                {
+                    text: 'Done',
+                    value: '3'
+                }
+            ],
         };
     },
     props: {
@@ -87,25 +111,24 @@ export default {
         textareaHeight() {
             return this.rows * 20 + 'px';
         },
-    watch: {
-        selected(value) {
-            this.updateSelectedTask(this.taskCard.title, value, null)
-        },
     },
-    },
+    // watch: {
+    //     selected(value) {
+    //         this.updateSelectedTask(this.taskCardModalEdit.title, value, null)
+    //     },
+    // },
     methods: {
         // addNewTask(taskTitle, taskDescription) {
         //     this.tasksStore.createTask(taskTitle, taskDescription, this.userStore.user.id)
         //     this.taskTitle = ""
         // },
         modalHandler(val) {
-            console.log("taskCard2: ", this.taskCardModalEdit)
-            this.title = this.taskCardModalEdit.title
-            this.textArea = this.taskCardModalEdit.textArea
-            console.log("title2: ", this.title)
+            // console.log("taskCard2: ", this.taskCardModalEdit)
             let modal = this.$refs.modalEdit
             if (val) {
                 this.fadeIn(modal);
+                this.title = this.taskCardModalEdit.title
+                this.textArea = this.taskCardModalEdit.textArea
             } else {
                 this.fadeOut(modal);
             }
@@ -132,26 +155,26 @@ export default {
             })();
         },
         deleteSelectedTask(index) {
-            this.tasksStore.deleteTask(this.taskCard.id)
+            this.tasksStore.deleteTask(this.taskCardModalEdit.id)
         },
         statusValue() {
-            if (this.taskCard.status == 1) {
+            if (this.taskCardModalEdit.status == 1) {
                 return this.status = "Backlog"
-            } else if (this.taskCard.status == 2) {
+            } else if (this.taskCardModalEdit.status == 2) {
                 return this.status = "Doing"
-            } else if (this.taskCard.status == 3) {
+            } else if (this.taskCardModalEdit.status == 3) {
                 return this.status = "Done"
             }
         },
-        updateSelectedTask(taskCardTitle, status, statusId) {
+        updateSelectedTaskModalEdit(taskCardTitle, status, statusId, textArea) {
             if (status === "") {
                 console.log("statusID: ", statusId)
-                this.tasksStore.updateTask(taskCardTitle, statusId, this.taskCard.id)
+                this.tasksStore.updateTask(taskCardTitle, statusId, this.taskCardModalEdit.id, textArea)
             } else {
-                this.tasksStore.updateTask(taskCardTitle, status, this.taskCard.id)
+                this.tasksStore.updateTask(taskCardTitle, status, this.taskCardModalEdit.id, textArea)
             }
             this.inputEditing = true
-            console.log("status: ", status)
+            this.modalHandler()
         },
     },
     mounted() {
