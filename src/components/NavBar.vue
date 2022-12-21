@@ -2,12 +2,12 @@
   <nav class="
         z-30
         h-auto
-        w-screen
+        w-full
         bg-white
 
         container
         px-6
-        py-8
+        py-4
         mx-auto
         md:flex md:justify-between md:items-center
       ">
@@ -58,6 +58,7 @@
       </li>
     </ul>
   </nav>
+  <CreateTask />
 </template>
 
 <script>

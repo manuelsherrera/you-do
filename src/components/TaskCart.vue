@@ -1,10 +1,10 @@
 <template>
     <ul class="p-4" v-if="taskCard">
-        <li v-if="inputEditing">Title: {{ taskCard.title }}</li>
+        <li v-if="inputEditing">{{ taskCard.title }}</li>
         <input v-else v-model="taskCard.title" name="title" id="title">
         <div>
             <li v-if="inputEditing">
-                Status: {{ statusValue() }}
+                {{ statusValue() }}
             </li>
             <select v-else v-model="selected">
                 <option disabled :value="selected">Status: {{ statusValue() }}</option>
@@ -13,22 +13,23 @@
                 </option>
             </select>
         </div>
-        <li>Deadline: {{ new Date(taskCard.inserted_at).toLocaleDateString('en-US', {year: 'numeric', month: 'short', day: 'numeric'}) }}</li>
+        <li>📅 {{ new Date(taskCard.inserted_at).toLocaleDateString('en-US', {year: 'numeric', month: 'short', day: 'numeric'}) }}</li>
 
-        <div class="flex gap-2">
+        <div class="flex gap-2 mt-2">
             <div>
                 <button @click="deleteSelectedTask(index)"
-                    class="w-30 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-3 py-1 my-2 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Delete</button>
+                    class="inline-block px-6 py-2.5 w-full bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Delete</button>
             </div>
-            <div>
+            <!-- <div>
                 <button @click="inputEditing = !inputEditing"
                     class="w-30 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-3 py-1 my-2 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Edit</button>
-            </div>
+            </div> -->
             <div v-if="!inputEditing">
                 <li><button @click="updateSelectedTask(taskCard.title, selected, taskCard.status)"
                         class="w-30 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-3 py-1 my-2 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Save</button>
                 </li>
             </div>
+            <div><ModalEdit :taskCardModalEdit="taskCard" :indexModalEdit="index"/></div>
         </div>
     </ul>
 </template>
@@ -36,7 +37,7 @@
 import { mapStores } from 'pinia'
 import userStore from "../stores/user"
 import tasksStore from "../stores/task"
-import ListBox from "../components/ListBox.vue"
+import ModalEdit from "../components/ModalEdit.vue"
 
 export default {
     data() {
@@ -63,7 +64,7 @@ export default {
         }
     },
     components: {
-        ListBox,
+        ModalEdit,
     },
     props: {
         taskCard: {

@@ -15,14 +15,12 @@
                         <div class="mt-12 lg:mt-0" style="z-index: 10">
                             <h1 class="text-5xl md:text-6xl xl:text-7xl font-bold tracking-tight mb-12"
                                 style="color: hsl(218, 81%, 95%)">
-                                Yesterday you <br /><span style="color: hsl(218, 81%, 75%)">said tomorrow</span>
+                                Organize your<br />
+work and life,<br /><span style="color: hsl(218, 81%, 75%)">finally</span>
                             </h1>
                             <h2 class="opacity-70 text-4xl" style="color: hsl(218, 81%, 85%)">
                                 Just Do It
                             </h2>
-                            <!-- <div>
-                            <img src="../../public/images/you-do.png" alt="">
-                            </div> -->
                         </div>
                         <div class="mb-12 lg:mb-0 relative">
                             <div class="blob1 hidden md:flex"></div>
@@ -51,11 +49,12 @@
 
                                     <input v-model="password" type="password" name="password" id="password"
                                         class="form-control block w-full px-3 py-1.5 mb-6 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                                        placeholder="Password" required/>
+                                        placeholder="Password" required />
 
-                                    <input v-model="confirmPassword" type="password" name="confirmPassword" id="confirmPassword"
+                                    <input v-model="confirmPassword" type="password" name="confirmPassword"
+                                        id="confirmPassword"
                                         class="form-control block w-full px-3 py-1.5 mb-6 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                                        placeholder="Confirm password" required/>
+                                        placeholder="Confirm password" required />
 
                                     <div class="form-check flex justify-center mb-6">
                                         <input
