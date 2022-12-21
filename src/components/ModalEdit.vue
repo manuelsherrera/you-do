@@ -21,15 +21,16 @@
                     </div>
                     <!-- TASK STATUS -->
                     <div>
+                        <label for="title" class="block mb-2 text-lg font-medium text-gray-900 ">Status</label>
                         <select v-model="selected" class="bg-gray-50 border-2 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 background-radial-gradient dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-4">
-                            <option disabled :value="selected">Status: {{ statusValue() }}</option>
+                            <option disabled :value="selected">{{ statusValue() }}</option>
                             <option v-for="option in options" :value="option.value" :key="option.text">
                                 {{ option.text }}
                             </option>
                         </select>
                     </div>
                     <!-- TASK DESCRIPTION -->
-                    <label for="expiry" class="text-gray-800 text-lg font-bold leading-tight tracking-normal">Task
+                    <label for="expiry" class="block mb-2 text-lg font-medium text-gray-900">Task
                         Description</label>
                     <div class="relative mb-5 mt-2">
                         <textarea v-model="textArea" ref="myTextarea" :rows="rows" :cols="cols"
@@ -41,9 +42,9 @@
                             class="w-1/4 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-2 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Save
                             task</button>
                         <button type="button"
-                            class="focus:outline-none ml-3 bg-gray-100 transition duration-150 text-gray-600 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded px-8 py-2 text-sm"
+                            class="focus:outline-none ml-3 bg-gray-100 transition duration-150 text-gray-600 ease-in-out hover:border-gray-400 hover:bg-gray-300 border font-medium rounded-lg text-sm px-4 py-2.5 text-center"
                             @click="modalHandler()">
-                            Cancel Modal Edit
+                            Cancel
                         </button>
                     </div>
                 </form>
