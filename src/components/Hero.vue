@@ -12,12 +12,14 @@
             <div class="px-6 py-12 lg:py-24 md:px-12 text-center lg:text-left">
                 <div class="container mx-auto xl:px-32 text-gray-800">
                     <div class="grid lg:grid-cols-2 gap-12 items-center">
-                        <div class="mt-12 lg:mt-0" style="z-index: 10">
-                            <h1 class="text-5xl md:text-6xl xl:text-7xl font-bold tracking-tight mb-12"
+                        <div class="flex flex-col items-center mt-12 lg:mt-0" style="z-index: 10">
+                            <h1 class="text-5xl md:text-6xl xl:text-7xl font-bold tracking-tight mb-12 text-center"
                                 style="color: hsl(218, 81%, 95%)">
                                 Organize your<br />
 work and life,<br /><span style="color: hsl(218, 81%, 75%)">finally</span>
                             </h1>
+
+                            <img src="../../public/images/you-do-long.png" class="w-80"/>
                             <!-- <h2 class="opacity-70 text-4xl" style="color: hsl(218, 81%, 85%)">
                                 Just Do It
                             </h2> -->
