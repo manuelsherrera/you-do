@@ -1,8 +1,8 @@
 <template>
     <footer class="text-center text-white" style="background-color: #0a4275">
-      <div class="container p-6">
-        <div class="">
-          <p class="flex justify-center items-center">
+      <div class=" p-6">
+        <div class="flex justify-center items-center w-full">
+          <p>
             <span class="mr-4">Register for free</span>
             <!-- <button
               type="button"
