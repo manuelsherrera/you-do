@@ -18,9 +18,9 @@
                                 Organize your<br />
 work and life,<br /><span style="color: hsl(218, 81%, 75%)">finally</span>
                             </h1>
-                            <h2 class="opacity-70 text-4xl" style="color: hsl(218, 81%, 85%)">
+                            <!-- <h2 class="opacity-70 text-4xl" style="color: hsl(218, 81%, 85%)">
                                 Just Do It
-                            </h2>
+                            </h2> -->
                         </div>
                         <div class="mb-12 lg:mb-0 relative">
                             <div class="blob1 hidden md:flex"></div>
