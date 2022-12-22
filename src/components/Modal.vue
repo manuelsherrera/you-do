@@ -67,6 +67,7 @@ export default {
             cols: 50,
             taskTitle: "",
             taskDescription: "",
+            succesfull: "Task succesfully created",
         };
     },
     components: {
@@ -84,6 +85,7 @@ export default {
             this.tasksStore.createTask(taskTitle, taskDescription, this.userStore.user.id)
             this.taskTitle = ""
             this.taskDescription = ""
+            /*  alert(this.succesfull) */
         },
         modalHandler(val) {
             let modal = document.getElementById("modal");
@@ -148,6 +150,5 @@ export default {
             hsl(218, 41%, 19%) 80%,
             transparent 100%);
 }
-
 </style>
   
