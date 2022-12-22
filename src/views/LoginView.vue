@@ -4,7 +4,7 @@
             <div class="item-end w-1/4 p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800"
                 role="alert">
                 <span class="font-bold">We have sent you a confirmation email!</span> Please, confirm your email!.
-            </div> 
+            </div>
         </div>
         <div class="px-6 py-12 lg:py-24 md:px-12 text-center lg:text-left">
             <div class="container mx-auto xl:px-32 text-gray-800">
@@ -42,9 +42,8 @@
 
                                 <div class="flex justify-center relative mt-6">
                                     <p class="text-sm font-light text-gray-500 dark:text-gray-400">
-                                        Already have an account? <router-link to="/"
-                                            class="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign
-                                            Up
+                                        Don't have an account? <router-link to="/"
+                                            class="font-medium text-primary-600 hover:underline dark:text-primary-500">Register
                                             here</router-link>
                                     </p>
                                 </div>

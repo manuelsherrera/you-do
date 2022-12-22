@@ -36,7 +36,8 @@ export default defineStore("user", {
       });
       this.user = data.user;
       if (error) {
-        alert("Invalid Login Credentials, please try again!");
+        alert(`Error: ${error.message}`);
+        /* alert("Invalid Login Credentials, please try again!" */
       } else {
         this.$router.push({ path: "/dashboard" });
       }
