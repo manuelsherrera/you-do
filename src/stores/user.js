@@ -23,10 +23,10 @@ export default defineStore("user", {
               firstName: firstName,
             },
           },
-        })
+        });
         // this.user = response.data.user
       } else {
-        console.log("Password status: Doesn't match")
+        alert("Password Doesn't match, please try again");
       }
     },
     async login(email, password) {
@@ -36,15 +36,14 @@ export default defineStore("user", {
       });
       this.user = data.user;
       if (error) {
-        console.log("error: ", error)
-        alert(error.error_description)
+        alert("Invalid Login Credentials, please try again!");
       } else {
-        this.$router.push({ path: '/dashboard' })
+        this.$router.push({ path: "/dashboard" });
       }
     },
     async signOut() {
-      const { error } = await supabase.auth.signOut()
-      this.user = null
+      const { error } = await supabase.auth.signOut();
+      this.user = null;
     },
   },
   persist: {
@@ -56,5 +55,4 @@ export default defineStore("user", {
       },
     ],
   },
-})
-
+});

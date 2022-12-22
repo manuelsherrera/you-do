@@ -22,6 +22,11 @@ const router = createRouter({
       name: "dashboard",
       component: () => import("../views/DashboardView.vue"),
     },
+    {
+      path: "/:pathMatch(.*)*",
+      name: "not-found",
+      component: () => import("../views/NotFound.vue"),
+    },
   ],
 });
 
@@ -30,8 +35,8 @@ router.beforeEach(async (to) => {
   const userAuth = await supabase.auth.getUser();
   console.log("getUser: ", userAuth);
   const isLoggedIn = userAuth.data.user !== null;
-  
-  if (!isLoggedIn && to.name === "dashboard") {
+
+  if (!isLoggedIn && to.name === "dashboard") {
     return "/";
   }
 
@@ -42,7 +47,6 @@ router.beforeEach(async (to) => {
   // if (!isLoggedIn && to.name !== "home") {
   //   return "/";
   // }
-
 });
 
 // router.beforeEach(async function (param){
