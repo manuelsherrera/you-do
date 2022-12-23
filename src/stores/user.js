@@ -1,39 +1,64 @@
 import { defineStore } from "pinia";
-
 import { supabase } from "../supabase";
 
 export default defineStore("user", {
   state() {
     return {
       user: null,
+      verificationEmail: false,
+      verificationPassword: false,
     };
   },
-
   actions: {
-    async fetchUser() {
-      const user = await supabase.auth.user();
-
-      this.user = user;
+    async signUp(firstName, email, password, confirmPassword) {
+      if (password === confirmPassword) {
+        this.verificationEmail = true;
+        setTimeout(() => {
+          this.verificationEmail = false;
+        }, 5000);
+        const response = await supabase.auth.signUp({
+          email: email,
+          password: password,
+          options: {
+            data: {
+              firstName: firstName,
+            },
+          },
+        });
+        // this.user = response.data.user
+      } else {
+        // alert("Password Doesn't match, please try again");
+        this.verificationPassword = true;
+        setTimeout(() => {
+          this.verificationPassword = false;
+        }, 5000);
+      }
     },
-
-    async signUp(email, password) {
-      const { user, error } = await supabase.auth.signUp({
+    async login(email, password) {
+      const { data, error } = await supabase.auth.signInWithPassword({
         email: email,
         password: password,
       });
-
-      if (error) throw error;
-      if (user) this.user = user;
+      this.user = data.user;
+      if (error) {
+        alert(`Error: ${error.message}`);
+        /* alert("Invalid Login Credentials, please try again!" */
+      } else {
+        this.$router.push({ path: "/dashboard" });
+      }
     },
-
-    persist: {
-      enabled: true,
-      strategies: [
-        {
-          key: "user",
-          storage: localStorage,
-        },
-      ],
+    async signOut() {
+      const { error } = await supabase.auth.signOut();
+      this.user = null;
     },
+  },
+  persist: {
+    enabled: true,
+    strategies: [
+      {
+        key: "user",
+        storage: localStorage,
+      },
+    ],
   },
 });

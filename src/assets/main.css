@@ -1,0 +1,25 @@
+body {
+    width: 100vw;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#app {
+    width: 70%;
+}
+
+
+@media (min-width: 320px) { 
+    #app {
+        width: 90%;
+    }
+ }
+
+ @media (min-width: 768px) { 
+    #app {
+        width: 90%;
+    }
+ }
