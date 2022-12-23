@@ -1,5 +1,5 @@
 <template>
-    <Modal />
+    <Modal v-if="userStore.user !== null && $route.path === '/dashboard'"/>
 </template>
 
 <script>

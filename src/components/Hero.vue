@@ -2,11 +2,19 @@
     <!-- Container for demo purpose -->
     <div>
         <!-- Section: Design Block -->
-        <section class="mb-40 background-radial-gradient overflow-hidden">
+        <section class="mb-10 background-radial-gradient overflow-hidden">
             <div v-if="this.userStore.verificationEmail" class="flex justify-end mt-2 mr-2">
                 <div class="item-end w-1/4 p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800"
                     role="alert">
                     <span class="font-bold">We have sent you a confirmation email!</span> Please, confirm your email!.
+                </div>
+            </div>
+            <div v-if="this.userStore.verificationPassword" class="flex justify-end mt-2 mr-2">
+                <div class="item-end w-1/4 p-4 mb-4 text-sm text-rose-700 bg-rose-100 rounded-lg dark:bg-rose-200 dark:text-rose-800"
+                    role="alert">
+                    <span class="font-bold">Password doesn't match.</span>
+                    <br>
+                    Please try again.
                 </div>
             </div>
             <div class="px-6 py-12 lg:py-24 md:px-12 text-center lg:text-left">
