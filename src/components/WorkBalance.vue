@@ -1,6 +1,6 @@
 <template>
     <div class="flex justify-center align-center">
-        <img src="../../public/images/Work-balance.svg" class="w-[90%] md:w-[60%] lg:w-[50%] xl:w-[40%] 2xl:w-[30%]" />
+        <img src="/images/Work-balance.svg" class="w-[90%] md:w-[60%] lg:w-[50%] xl:w-[40%] 2xl:w-[30%]" />
     </div>
 </template>
 

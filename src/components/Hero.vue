@@ -27,7 +27,7 @@
 work and life,<br /><span style="color: hsl(218, 81%, 75%)">finally</span>
                             </h1>
 
-                            <img src="../../public/images/you-do-long.png" class="w-56 sm:mr-8"/>
+                            <img src="/images/you-do-long.png" class="w-56 sm:mr-8"/>
                             <!-- <h2 class="opacity-70 text-4xl" style="color: hsl(218, 81%, 85%)">
                                 Just Do It
                             </h2> -->
