@@ -1,6 +1,6 @@
 <template>
     <!-- Container for demo purpose -->
-    <div class="container my-24 px-6 mx-auto">
+    <div class="container mt-12 mb-24 px-6 mx-auto">
         <!-- Section: Design Block -->
         <section class="mb-32 text-gray-800">
             <div id="pricing-block-5" class="background-radial-gradient text-center text-white">

@@ -1,5 +1,6 @@
 <template>
     <HERO />
+    <WorkBalance />
     <PRICING />
     <TEAM />
     <!--  <FOOTER /> -->
@@ -10,6 +11,7 @@
 import HERO from "../components/Hero.vue"
 import PRICING from "../components/Pricing.vue"
 import TEAM from "../components/Team.vue"
+import WorkBalance from "../components/WorkBalance.vue"
 /* import FOOTER from "../components/Footer.vue" */
 
 export default {
@@ -17,6 +19,7 @@ export default {
         HERO,
         PRICING,
         TEAM,
+        WorkBalance,
         /* FOOTER, */
     }
 }

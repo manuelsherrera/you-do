@@ -39,29 +39,6 @@ router.beforeEach(async (to) => {
   if (!isLoggedIn && to.name === "dashboard") {
     return "/";
   }
-
-  // if (isLoggedIn && to.name === "home") {
-  //   return "/dashboard";
-  // }
-
-  // if (!isLoggedIn && to.name !== "home") {
-  //   return "/";
-  // }
 });
-
-// router.beforeEach(async function (param){
-//   console.log("param: ", param);
-//   const response = await supabase.auth.getUser();
-//   const isLoggedIn = response.data.user !== null;
-
-//   if (isLoggedIn && param.name === "auth") {
-//     return "/dashboard";
-//   }
-
-//   if (!isLoggedIn && param.name !== "auth") {
-//     return "/";
-//   }
-
-// });
 
 export default router;

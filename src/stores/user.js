@@ -6,6 +6,7 @@ export default defineStore("user", {
     return {
       user: null,
       verificationEmail: false,
+      verificationPassword: false,
     };
   },
   actions: {
@@ -26,7 +27,11 @@ export default defineStore("user", {
         });
         // this.user = response.data.user
       } else {
-        alert("Password Doesn't match, please try again");
+        // alert("Password Doesn't match, please try again");
+        this.verificationPassword = true;
+        setTimeout(() => {
+          this.verificationPassword = false;
+        }, 5000);
       }
     },
     async login(email, password) {
