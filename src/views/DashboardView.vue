@@ -1,6 +1,7 @@
 <template>
 <!-- <CreateTask /> -->
-    <div class="mb-40 background-radial-gradient md:flex justify-center mt-6 px-4 gap-x-4 overflow-x-scroll min-h-screen py-4 rounded">
+    <div class="mb-40 background-radial-gradient flex md:justify-center mt-6 px-4 gap-x-4 overflow-x-scroll min-h-screen py-4 rounded">
+    <!-- <div class="mb-40 background-radial-gradient md:flex justify-center mt-6 px-4 gap-x-4 overflow-x-scroll min-h-screen py-4 rounded"> -->
 
         <div id="col1" @dragover.prevent @drop="onDrop($event, 1)" class="w-[33%] min-w-min">
             <div>
