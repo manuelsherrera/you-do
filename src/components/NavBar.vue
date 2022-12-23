@@ -79,7 +79,7 @@
               class="absolute background-radial-gradient right-auto z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
               <div class="py-3 px-4 text-sm text-gray-900 dark:text-white">
                 <div v-if="userStore.user !== null">{{ this.userStore.user.user_metadata.firstName }}</div>
-                <div v-if="userStore.user !== null" class="font-medium truncate">{{ this.userStore.user.email }}</div>
+                <div v-if="userStore.user !== null" class="text-[70%] font-medium truncate">{{ this.userStore.user.email }}</div>
               </div>
               <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="avatarButton">
 
