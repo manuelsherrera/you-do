@@ -70,7 +70,7 @@
           <div v-if="userStore.user !== null">
             <div>
               <img id="avatarButton" type="button" class="position-absolute w-10 h-10 rounded-full cursor-pointer"
-                src="https://thispersondoesnotexist.com/image" @click="toggleDropdown">
+                src="https://i.pravatar.cc/200" @click="toggleDropdown">
               <!-- <span class="top-[3%] right-[9.3%] absolute w-3.5 h-3.5 bg-green-400 border-2 border-white dark:border-gray-800 rounded-full"></span> -->
             </div>
 
